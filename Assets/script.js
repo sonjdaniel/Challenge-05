@@ -20,9 +20,14 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-  var currentDay = dayjs();
-  $('#currentDay').text(currentDay.format('dddd, MMMM D YYYY'))
-  console.log(currentDay)
+// current day
+var currentDay = dayjs();
+$('#currentDay').text(currentDay.format('dddd, MMMM D YYYY'))
+console.log(currentDay)
+
+// Current time
+var hour = dayjs().hour();
+  console.log(hour);
 
 // time slot from HTML
 var slot9 = $('#hour-9');
