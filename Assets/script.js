@@ -31,7 +31,7 @@ console.log(currentDay)
 var hour = dayjs().hour();
   console.log(hour);
 
-// time slot from HTML
+// time slot from HTML, trying to figure if there is a way to user the time slots
 var slot9 = $('#hour-9');
 var slot10 = $('#hour-10');
 var slot11 = $('#hour-11');
@@ -41,6 +41,19 @@ var slot2 = $('#hour-14');
 var slot3 = $('#hour-15');
 var slot4 = $('#hour-16');
 var slot5 = $('#hour-17');
+
+// save button to alert time and task. then able to save it to the local storage.
+$('.saveBtn').click(function () {
+
+  // Alert for time 
+  var time = $(this).parent().attr('id');
+  // alert for Task Description
+  var taskDescription = $(this).siblings('textarea').val()
+
+  // Local storage template
+  localStorage.setItem(time,taskDescription)
+
+})
 
 
 });
