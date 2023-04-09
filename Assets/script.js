@@ -10,16 +10,26 @@ console.log(currentDay)
 var hour = dayjs().hour();
   console.log(hour);
 
-// time slot from HTML, trying to figure if there is a way to user the time slots
-var slot9 = $('#hour-9');
-var slot10 = $('#hour-10');
-var slot11 = $('#hour-11');
-var slot12 = $('#hour-12');
-var slot1 = $('#hour-13');
-var slot2 = $('#hour-14');
-var slot3 = $('#hour-15');
-var slot4 = $('#hour-16');
-var slot5 = $('#hour-17');
+// past, present, future
+function trackTime() {
+  let currentHour = new Date().getHours();
+  let timeBlocks = $(".time-block");
+ 
+
+  timeBlocks.each(function () {
+    let time = $(this).attr("id").split("hour")[1];
+    if (currentHour == time) {
+      $(this).addClass("present");
+    } else if (currentHour < time) {
+      $(this).removeClass("present");
+      $(this).addClass("future");
+    } else if (currentHour > time) {
+      $(this).removeClass("future");
+      $(this).addClass("past");
+    }
+  });
+}
+trackTime();
 
 
 $(document).ready(function () {
@@ -40,34 +50,16 @@ $(document).ready(function () {
 });
 
 // need to figure out the time block and retrieve from local storage
-var timeBlockDivs = $('.time-block');
-  // The below is done for each of the HTML timeBlockDivs
-  timeBlockDivs.each(function() {
-    // Ensures that task added by user will keep showing on page even after page is reloaded
-    if (task) {
-      $(this).children('textarea').val(task)
-    }
-  })
-
-
-// To be delete
-// $(document).ready(function () {
-// // save button to alert time and task. then able to save it to the local storage.
-// $('.saveBtn').click(function () {
-
-//   // Alert for time 
-//   var time = $(this).parent().attr('id');
-//   // alert for Task Description
-//   var taskDescription = $(this).siblings('textarea').val()
-
-//   // Local storage template
-//   localStorage.setItem(time,taskDescription)
-
-// })
-
-// });
+$('.time-block').each(function() {
+  var id = $(this).attr("id");
+  var description = localStorage.getItem(id);
+  if (description) {
+    $(this).find('.description').val(JSON.parse(description));
+  }
+});
 
 });
+
 
 
 // move the TODO down and keeping it for references
