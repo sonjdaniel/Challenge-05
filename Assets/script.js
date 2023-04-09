@@ -22,8 +22,18 @@ $(function () {
   // TODO: Add code to display the current date in the header of the page.
   var currentDay = dayjs();
   $('#currentDay').text(currentDay.format('dddd, MMMM D YYYY'))
+  console.log(currentDay)
 
-
+// time slot from HTML
+var slot9 = $('#hour-9');
+var slot10 = $('#hour-10');
+var slot11 = $('#hour-11');
+var slot12 = $('#hour-12');
+var slot1 = $('#hour-13');
+var slot2 = $('#hour-14');
+var slot3 = $('#hour-15');
+var slot4 = $('#hour-16');
+var slot5 = $('#hour-17');
 
 
 });
