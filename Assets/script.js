@@ -42,18 +42,39 @@ var slot3 = $('#hour-15');
 var slot4 = $('#hour-16');
 var slot5 = $('#hour-17');
 
-// save button to alert time and task. then able to save it to the local storage.
-$('.saveBtn').click(function () {
 
-  // Alert for time 
-  var time = $(this).parent().attr('id');
-  // alert for Task Description
-  var taskDescription = $(this).siblings('textarea').val()
+$(document).ready(function () {
+  var saveButtons = $(".saveBtn");
+  // Add a click event listener to each save button
+  saveButtons.on("click", function (event) {
+  // `this`  refers to the element that was clicked
+    var saveButton = $(this);
+  // Find the time-block element that contains the save button
+    var timeBlock = saveButton.closest(".time-block");
+  //  id for time-block element
+  var id = timeBlock.attr("id");
+    // value of the description input field
+    var description = timeBlock.find(".description").val();
+    // local storage to save
+    localStorage.setItem(id, JSON.stringify(description));
+  });
+});
 
-  // Local storage template
-  localStorage.setItem(time,taskDescription)
 
-})
+// $(document).ready(function () {
+// // save button to alert time and task. then able to save it to the local storage.
+// $('.saveBtn').click(function () {
 
+//   // Alert for time 
+//   var time = $(this).parent().attr('id');
+//   // alert for Task Description
+//   var taskDescription = $(this).siblings('textarea').val()
+
+//   // Local storage template
+//   localStorage.setItem(time,taskDescription)
+
+// })
+
+// });
 
 });
