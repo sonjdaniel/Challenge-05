@@ -1,6 +1,5 @@
 $(function () {
 
-
 // current day
 var currentDay = dayjs();
 $('#currentDay').text(currentDay.format('dddd, MMMM D YYYY'))
@@ -9,6 +8,9 @@ console.log(currentDay)
 // Current time
 var hour = dayjs().hour();
   console.log(hour);
+
+// variable to clear tasks
+var clearTasks = $('#clear')
 
 
 $(document).ready(function () {
@@ -28,7 +30,7 @@ $(document).ready(function () {
   });
 });
 
-// need to figure out the time block and retrieve from local storage
+// time block and retrieve from local storage
 $('.time-block').each(function() {
   var id = $(this).attr("id");
   var description = localStorage.getItem(id);
@@ -38,12 +40,12 @@ $('.time-block').each(function() {
 });
 // past, present, future
 function trackTime() {
-  let currentHour = new Date().getHours();
-  let timeBlocks = $(".time-block");
+  var currentHour = new Date().getHours();
+  var timeBlocks = $(".time-block");
  
 
   timeBlocks.each(function () {
-    let time = $(this).attr("id").split("hour")[1];
+    var time = $(this).attr("id").split("hour")[1];
     if (currentHour == time) {
       $(this).addClass("present");
     } else if (currentHour < time) {
@@ -56,6 +58,15 @@ function trackTime() {
   });
 }
 trackTime();
+
+
+// clear tasks
+clearTasks.on("click", function(event){
+  if (confirm("Are you sure you want to clear your tasks for the day?")){
+    localStorage.clear();
+    $(".time-block .description").val("");
+  }
+});
 
 });
 
