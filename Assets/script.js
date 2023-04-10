@@ -10,27 +10,6 @@ console.log(currentDay)
 var hour = dayjs().hour();
   console.log(hour);
 
-// past, present, future
-function trackTime() {
-  let currentHour = new Date().getHours();
-  let timeBlocks = $(".time-block");
- 
-
-  timeBlocks.each(function () {
-    let time = $(this).attr("id").split("hour")[1];
-    if (currentHour == time) {
-      $(this).addClass("present");
-    } else if (currentHour < time) {
-      $(this).removeClass("present");
-      $(this).addClass("future");
-    } else if (currentHour > time) {
-      $(this).removeClass("future");
-      $(this).addClass("past");
-    }
-  });
-}
-trackTime();
-
 
 $(document).ready(function () {
   var saveButtons = $(".saveBtn");
@@ -57,6 +36,26 @@ $('.time-block').each(function() {
     $(this).find('.description').val(JSON.parse(description));
   }
 });
+// past, present, future
+function trackTime() {
+  let currentHour = new Date().getHours();
+  let timeBlocks = $(".time-block");
+ 
+
+  timeBlocks.each(function () {
+    let time = $(this).attr("id").split("hour")[1];
+    if (currentHour == time) {
+      $(this).addClass("present");
+    } else if (currentHour < time) {
+      $(this).removeClass("present");
+      $(this).addClass("future");
+    } else if (currentHour > time) {
+      $(this).removeClass("future");
+      $(this).addClass("past");
+    }
+  });
+}
+trackTime();
 
 });
 
