@@ -2,7 +2,7 @@ $(function () {
 
 // current day
 var currentDay = dayjs();
-$('#currentDay').text(currentDay.format('dddd, MMMM D YYYY'))
+$('#currentDay').text(currentDay.format("dddd, MMMM D, YYYY h:mm A "))
 console.log(currentDay)
 
 // Current time
